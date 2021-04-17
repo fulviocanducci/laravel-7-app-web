@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware([])->group(function ($route) {
+
+    $route->get('/admin', 'AdminController@index')->name('admin.index');
+
+    $route->get('/admin/branch', 'BranchController@index')->name('branch.index');
+    $route->get('/admin/branch/create', 'BranchController@create')->name('branch.create');
+    $route->get('/admin/branch/edit/{id}', 'BranchController@edit')->name('branch.edit')->where('id', '[0-9]+');
+    $route->post('/admin/branch', 'BranchController@store')->name('branch.store');
+    $route->post('/admin/branch/delete', 'BranchController@delete')->name('branch.delete');
+});
