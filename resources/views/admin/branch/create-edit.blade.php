@@ -1,6 +1,7 @@
 @extends('_layout.index')
 @section('content')
 @include('_layout.title', ['title' => 'Filial - '.(isset($model) ? "Alteração" : "Cadastro")])
+@include('_layout.errors.error')
 <form action="{{route('branch.store')}}" method="POST">
     @csrf
     @if (isset($model) && $model->id > 0)

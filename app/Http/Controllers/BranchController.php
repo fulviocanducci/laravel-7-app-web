@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BranchFormRequest;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class BranchController extends BaseController
         return view($this->getViewCreateOrEdit(), compact('model'));
     }
 
-    public function store(Request $request)
+    public function store(BranchFormRequest $request)
     {
         $id = $request->get('id');
         $data['name'] = $request->get('name');
