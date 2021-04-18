@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class BranchController extends BaseController
 {
-    public function __construct()
+    public function __construct(Branch $branch)
     {
-        parent::__construct('branch', new Branch());
+        parent::__construct('branch', $branch);
     }
 
     public function index()

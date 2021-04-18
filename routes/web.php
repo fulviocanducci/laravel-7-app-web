@@ -17,7 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([])->group(function ($route) {
+Route::group([], function ($route) {
+    $route->get('/login', 'LoginController@index')->name('login.index');
+    $route->post('/login', 'LoginController@authenticate')->name('login.authenticate');
+});
+
+Route::middleware(['middleware' => 'auth'])->group(function ($route) {
 
     $route->get('/admin', 'AdminController@index')->name('admin.index');
 

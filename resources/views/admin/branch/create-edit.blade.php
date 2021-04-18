@@ -2,7 +2,7 @@
 @section('content')
 @include('_layout.title', ['title' => 'Filial - '.(isset($model) ? "Alteração" : "Cadastro")])
 @include('_layout.errors.error')
-<form action="{{route('branch.store')}}" method="POST">
+<form action="{{route('branch.store')}}" method="POST" name="form1" id="form1">
     @csrf
     @if (isset($model) && $model->id > 0)
     @include('_layout.forms.hidden', ['name' => 'id', 'value' => $model->id])
@@ -14,4 +14,8 @@
         @include('_layout.buttons.button-cancel', ['route' => 'branch.index'])
     </div>
 </form>
+@endsection
+@section('scripts')
+@include('_layout.scripts.validation')
+<script src="{{asset('/js/forms/validate-branch.js')}}"></script>
 @endsection
