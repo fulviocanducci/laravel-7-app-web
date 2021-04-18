@@ -23,9 +23,11 @@ Route::group([], function ($route) {
 });
 
 Route::middleware(['middleware' => 'auth'])->group(function ($route) {
-
+    /*ADMIN */
     $route->get('/admin', 'AdminController@index')->name('admin.index');
-
+    /*LOGOUT*/
+    $route->post('/logout', 'LoginController@logout')->name('login.logout');
+    /*BRANCH*/
     $route->get('/admin/branch', 'BranchController@index')->name('branch.index');
     $route->get('/admin/branch/create', 'BranchController@create')->name('branch.create');
     $route->get('/admin/branch/edit/{id}', 'BranchController@edit')->name('branch.edit')->where('id', '[0-9]+');

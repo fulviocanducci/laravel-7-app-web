@@ -1,4 +1,4 @@
 @extends('_layout.index')
 @section('content')
-<p>Admin</p>
+@include('_layout.title', ['title' => 'Administrativo'])
 @endsection

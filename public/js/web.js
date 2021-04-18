@@ -4,3 +4,11 @@ var tooltipTriggerList = [].slice.call(
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
 });
+
+function onSubmit(e) {
+    if (confirm("Deseja sair?")) {
+        return true;
+    }
+    e.preventDefault();
+    return false;
+}

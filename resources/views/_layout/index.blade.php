@@ -30,14 +30,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('branch.index')}}">Filial</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                @if (Auth::check())
+                <div class="text-end">
+                    <form action="{{route('login.logout')}}" method="POST" onsubmit="onSubmit(event)">
+                        @csrf
+                        <button type="submit" class="btn btn-warning">Logout</button>
+                    </form>
+                </div>
+                @endif
             </div>
         </div>
     </nav>
