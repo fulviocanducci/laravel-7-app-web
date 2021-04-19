@@ -13,10 +13,14 @@ class BranchController extends BaseController
         parent::__construct('branch', $branch);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $model = $this->model->paginate();
-        return view($this->getViewIndex(), compact('model'));
+        $model = $this->model->orderBy('name');
+        if ($filter = $request->get('filter', null)) {
+            $model = $model->where('name', 'LIKE', "%{$filter}%");
+        }
+        $model = $model->paginate()->withQueryString();
+        return view($this->getViewIndex(), compact('model', 'filter'));
     }
 
     public function create()
@@ -40,11 +44,13 @@ class BranchController extends BaseController
             if ($result) {
                 $result->fill($data);
                 $result->save();
+                alert()->success('Informação', 'Alterado com êxito.');
             }
         } else {
-            $this->model->create($data);
+            $result = $this->model->create($data);
+            alert()->success('Informação', 'Gravado com êxito.');
         }
-        return redirect()->route('branch.index');
+        return redirect()->route('branch.edit', ['id' => $result->id]);
     }
 
     public function delete(Request $request, $id)
